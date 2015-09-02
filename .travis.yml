@@ -1,8 +1,12 @@
+# Travis CI instructions. See http://docs.travis-ci.com/user/languages/python/
 language: python
 python:
     - 3.2
     - 3.3
     - 3.4
+
+# requirement modules.
+install: "pip install -r requirements.txt"
 
 script:
     python looper.py
