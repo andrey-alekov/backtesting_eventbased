@@ -19,3 +19,19 @@ class DataHandler(object):
     @abstractmethod
     def update_candles(self):
         raise NotImplementedError("Must be overridden")
+
+
+class CSVHandler(DataHandler):
+    """
+    CSV file data handler.
+    """
+    def __init__(self, events, filename):
+        self.events = events
+        self.filename = filename
+        self._open_csv(filename)
+    
+    def _open_csv(self, filename):
+        pass
+    
+    def _get_new_candle(self):
+        pass
