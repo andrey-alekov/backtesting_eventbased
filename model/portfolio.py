@@ -1,3 +1,14 @@
+import datetime
+import numpy as np
+import pandas as od
+import Queue
+
+from abc import ABCMeta, abstractmethod
+from math import floor
+
+from event import FillEvent, OrderEvent
+
+
 class Limit(object):
     def __init__(self, size):
         self.size = size
@@ -9,10 +20,13 @@ class Limit(object):
     def get_limit(self):
         return self.size
 
+
 class Portfolio(object):
     """
     Basic portfolio.
     """
+    __metaclass__ = ABCMeta
+    
     def __init__(self, name, limit):
         self.name = name
         self.risk_engine = None
@@ -25,7 +39,15 @@ class Portfolio(object):
             self.toggle = False
         else:
             self.toggle = True
- 
+
+    @abstractmethod
+    def update_signal(self, event):
+        raise NotImplementedError("Should implement update_signal()")
+
+    @abstractmethod
+    def update_fill(self, event):
+        raise NotImplementedError("Should implement update_fill()")
+
 
 class PortfolioAgent(object):
     """
