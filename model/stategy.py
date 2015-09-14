@@ -1,7 +1,18 @@
+import datetime
+import numpy as np
+import pandas as pd
+import Queue
+
+from abc import ABCMeta, abstractmethod
+from event import SignalEvent
+
+
 class Strategy(object):
     """
     Basic strategy.
     """
+    __metaclass__ = ABCMeta
+    
     def __init__(self, name)
         self.name = name
         self.toggle = False
@@ -31,3 +42,8 @@ class Strategy(object):
         Return last raise signalevent
         """
         pass
+    
+    @abstractmethod
+    def calculate_sginals(self):
+        raise NotImplementedError("not implemented")
+    
